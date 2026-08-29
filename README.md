@@ -1,6 +1,6 @@
-<h1 align="center">Windows Terminal Apollo Theme</h1>
+<h1 align="center">Windows Terminal Apollo Themes</h1>
 
-<p align="center">Apollo brings a near-black canvas, warm contrast, and vivid terminal colors to Windows Terminal.</p>
+<p align="center">Apollo pairs a near-black, warm-contrast dark scheme with Apollo Light's warm paper canvas for Windows Terminal.</p>
 
 <p align="center">
   <a href="https://apollo-theme.github.io/#app-windows-terminal"><img alt="Preview" src="https://img.shields.io/badge/preview-explore-fabd2f?style=for-the-badge&amp;labelColor=141617"></a>
@@ -12,37 +12,54 @@
 </p>
 
 <p align="center">
-  <a href="https://apollo-theme.github.io/#app-windows-terminal"><img src="https://raw.githubusercontent.com/apollo-theme/apollo-theme.github.io/main/previews/windows-terminal.svg" alt="Simulated Apollo preview for Windows Terminal"></a>
+  <a href="https://apollo-theme.github.io/#app-windows-terminal"><img src="https://raw.githubusercontent.com/apollo-theme/apollo-theme.github.io/main/previews/windows-terminal.svg" alt="Simulated dark Apollo preview for Windows Terminal"></a>
+  <a href="https://apollo-theme.github.io/#app-windows-terminal-light"><img src="https://raw.githubusercontent.com/apollo-theme/apollo-theme.github.io/main/previews/windows-terminal-light.svg" alt="Simulated Apollo Light preview for Windows Terminal"></a>
 </p>
-<p align="center"><sub><strong>Simulated preview.</strong> Rendered output may vary by font and platform.</sub></p>
+<p align="center"><sub><strong>Simulated previews.</strong> Rendered output may vary by font and platform.</sub></p>
 
-## Install and activate
+`apollo.json` remains the existing dark scheme object named **Apollo**. `apollo-light.json` adds a separate **Apollo Light** object; existing profile settings that name `Apollo` remain dark.
 
-Open Windows Terminal **Settings**, choose **Open JSON file**, and paste the object from `apollo.json` into the top-level `schemes` array. Do not replace the entire settings file. Activate it for a profile (or profile defaults) with:
+## Install
+
+Open Windows Terminal **Settings**, choose **Open JSON file**, and paste the object from `apollo.json`, `apollo-light.json`, or both into the top-level `schemes` array. Do not replace the entire settings file.
+
+## Activate
+
+Set the desired profile or profile defaults to one of these exact names:
 
 ```json
 "colorScheme": "Apollo"
+```
+
+or:
+
+```json
+"colorScheme": "Apollo Light"
 ```
 
 Save the settings file; Windows Terminal reloads it.
 
 ## Uninstall
 
-Select another `colorScheme`, then remove the object whose `name` is `Apollo` from the `schemes` array.
+Select another `colorScheme`, then remove the scheme object whose `name` is `Apollo` and/or `Apollo Light` from the `schemes` array. Removing one variant does not affect the other.
 
 ## Visual check
 
-Print ANSI colors 0–15, move the cursor over text, and select text. Confirm the `#141617` canvas, warm foreground, yellow cursor, and exact normal/bright colors in `palette/apollo.json`. Windows Terminal schemes cannot express Apollo's selection alpha or cursor-text color, so selection uses opaque `#3c3836`. This repository was generated and JSON-validated off Windows; rendered pixels require a Windows Terminal check.
+For both schemes, print ANSI colors 0–15, move the cursor over text, and select text. Dark Apollo should retain `#141617`; Apollo Light should use `#f9f5d7`. Confirm readable foreground/cursor contrast and exact normal/bright slots from the matching palette. Windows Terminal schemes cannot express selection alpha or cursor-text color, so each selection color is emitted as the palette's opaque RGB value. JSON checks performed off Windows do not replace a rendered Windows Terminal check.
 
 ## Development
 
-The committed `apollo.json` is generated from the pinned palette snapshot at `palette/apollo.json`.
+- `palette/apollo.json` → `apollo.json` (dark, compatibility-preserving)
+- `palette/apollo-light.json` → `apollo-light.json` (light)
 
 ```sh
+python3 scripts/generate.py
 python3 scripts/generate.py --check
 python3 scripts/check.py
 python3 -m unittest discover -s tests -v
 ```
+
+Generation and checks never read or write Windows Terminal settings.
 
 ## License
 
