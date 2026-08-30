@@ -17,7 +17,7 @@
 </p>
 <p align="center"><sub><strong>Simulated previews.</strong> Rendered output may vary by font and platform.</sub></p>
 
-`apollo.json` remains the existing dark scheme object named **Apollo**. `apollo-light.json` adds a separate **Apollo Light** object; existing profile settings that name `Apollo` remain dark.
+**Apollo Dark** is the public name for the existing unsuffixed `apollo.json` compatibility scheme, whose native name remains **Apollo**. **Apollo Light** keeps its current `apollo-light.json` scheme identity; existing profile settings that name `Apollo` remain dark.
 
 ## Install
 
